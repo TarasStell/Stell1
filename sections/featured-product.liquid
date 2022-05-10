@@ -77,6 +77,8 @@
       </div>
       <div class="product__info-wrapper grid__item">
         <div id="ProductInfo-{{ section.id }}" class="product__info-container">
+      
+    
           {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
           {%- for block in section.blocks -%}
@@ -89,13 +91,17 @@
               </p>
             {%- when 'title' -%}
               <h2 class="product__title {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+               
+                
                 {%- if product.title != blank -%}
                   {{ product.title | escape }}
                 {%- else -%}
                   {{ 'onboarding.product_title' | t }}
                 {%- endif -%}
               </h2>
+         
             {%- when 'price' -%}
+           
               <div class="no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                 {%- render 'price', product: product, use_variant: true, show_badges: true, price_class: 'price--large' -%}
               </div>
