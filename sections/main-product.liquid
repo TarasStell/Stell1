@@ -206,12 +206,19 @@
             </p>
           {%- when 'title' -%}
             <div class="product__title" {{ block.shopify_attributes }}>
-              <div class="product-tags">
-               {% for tag in product.tags %}
-               <span><a href="/collections/all/{{ tag | handleize }}" class="product__text">This product contains a tag : {{ tag }}</a></span>
-              {% endfor %}
+              <div class="product__tags">
+                 {% if product.tags != blank   %}
+                    <div>This product contains a tag:</div>  
+                    {% for tag in product.tags %}   
+                        <span>
+                          <a href="/collections/all/{{ tag | handleize }}" class="product__text"> {{ tag }}</a>   
+                        </span>
+                    {% endfor %}
+                  {% else %}
+                    <div>This product not contains a tag</div>  
+                  {% endif %}
              </div>
-          
+            
               <a href="{{ product.url }}" class="product__title">
                 <h2 class="h1">
                   {{ product.title | escape }}
