@@ -4,21 +4,30 @@
 {% for block in section.blocks %}
     {% case block.type %}
         {% when 'announcement' %}
-
-
             <div class="custom-announcement-bar-{{count}}">
-
                 <a class="custom-announcement-bar__link" href="{{ block.settings.link }}">
                     <p class="custom-announcement-bar__message-{{count}}">{{ block.settings.announcement_bar_text }}</p>
                 </a>
-
+                <i class="fa-solid fa-xmark"></i>
             </div>
 
 
             {% style %}
 
 .custom-announcement-bar-{{count}}{
-    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.custom-announcement__icon {}
+
+
+{% if block.settings.hidden-block %}
+    font-weight: bold;
+{% endif %}
+
+.hidden {
+    display: none;
 }
 
 .custom-announcement-bar__link {
@@ -40,10 +49,10 @@
 
 {% endstyle %}
 
-
             {% assign count = count | plus:1 %}
 
     {% endcase %}
+
 {% endfor %}
 
 {% schema %}
@@ -57,6 +66,11 @@
             "name": "Announcement",
             "settings": [
                 {
+                    "type": "checkbox",
+                    "id": "hidden-block",
+                    "label": "Hidden",
+                    "default": false
+                }, {
                     "type": "text",
                     "id": "announcement_bar_text",
                     "default": "Default announcement",
