@@ -4,23 +4,39 @@
 {% for block in section.blocks %}
     {% case block.type %}
         {% when 'announcement' %}
-            <div class="custom-announcement-bar-{{count}}">
-                <a class="custom-announcement-bar__link" href="{{ block.settings.link }}">
-                    <p class="custom-announcement-bar__message-{{count}}">{{ block.settings.announcement_bar_text }}</p>
-                </a>
-                <i class="fa-solid fa-xmark"></i>
-            </div>
+            {% if block.settings.enable_checkbox %}
+                <div class="custom-announcement-bar-{{count}}">
+                    <a class="custom-announcement-bar__link-{{count}}" href="{{ block.settings.link }}">
+                        <p class="custom-announcement-bar__message-{{count}}">{{ block.settings.announcement_bar_text }}</p>
+                    </a>
+                    <button class="fa-solid fa-xmark custom-announcement__icon-{{count}}"></button>
 
+
+                </div>
+            {% endif %}
 
             {% style %}
 
 .custom-announcement-bar-{{count}}{
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
-.custom-announcement__icon {}
+.custom-announcement__icon-{{count}}{
+    background-color: transparent;
+    transition-duration: 0.3s;
+    border-radius: 30%;
+    cursor: pointer;
+    font-size: {{block.settings.font-size-btn}}px;
+    color: {{block.settings.font-color}};
+    border-color: transparent;
+}
 
+.custom-announcement__icon-{{count}}:hover {
+
+    opacity: 0.53;
+}
 
 {% if block.settings.hidden-block %}
     font-weight: bold;
@@ -30,9 +46,11 @@
     display: none;
 }
 
-.custom-announcement-bar__link {
+.custom-announcement-bar__link-{{count}}{
     text-decoration: none;
+    margin-right: {{block.settings.space-between}}%;
 }
+
 
 .custom-announcement-bar__message-{{count}}{
     margin: 0;
@@ -55,6 +73,7 @@
 
 {% endfor %}
 
+
 {% schema %}
 
 {
@@ -67,8 +86,8 @@
             "settings": [
                 {
                     "type": "checkbox",
-                    "id": "hidden-block",
-                    "label": "Hidden",
+                    "id": "enable_checkbox",
+                    "label": "Enable section",
                     "default": false
                 }, {
                     "type": "text",
@@ -109,6 +128,24 @@
                     "max": 22,
                     "step": 1,
                     "unit": "px"
+                }, {
+                    "type": "range",
+                    "id": "font-size-btn",
+                    "label": "Font Size Btn",
+                    "default": 10,
+                    "min": 6,
+                    "max": 20,
+                    "step": 1,
+                    "unit": "px"
+                }, {
+                    "type": "range",
+                    "id": "space-between",
+                    "label": "Space Between",
+                    "default": 3,
+                    "min": 1,
+                    "max": 50,
+                    "step": 1,
+                    "unit": "%"
                 }, {
                     "type": "color",
                     "id": "font-color",
