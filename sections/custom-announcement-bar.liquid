@@ -1,3 +1,6 @@
+<script src="{{'custom-announcement-bar.js' | asset_url}}" async="async"></script>
+
+
 {% assign count = 0 %}
 
 
@@ -5,11 +8,11 @@
     {% case block.type %}
         {% when 'announcement' %}
             {% if block.settings.enable_checkbox %}
-                <div class="custom-announcement-bar-{{count}}">
+                <div class="custom-announcement-bar-{{count}} custom-bar">
                     <a class="custom-announcement-bar__link-{{count}}" href="{{ block.settings.link }}">
                         <p class="custom-announcement-bar__message-{{count}}">{{ block.settings.announcement_bar_text }}</p>
                     </a>
-                    <button class="fa-solid fa-xmark custom-announcement__icon-{{count}}"></button>
+                    <button class="fa-solid fa-xmark custom-announcement__icon-{{count}} btn-x"></button>
 
 
                 </div>
@@ -38,9 +41,6 @@
     opacity: 0.53;
 }
 
-{% if block.settings.hidden-block %}
-    font-weight: bold;
-{% endif %}
 
 .hidden {
     display: none;
@@ -89,7 +89,9 @@
                     "id": "enable_checkbox",
                     "label": "Enable section",
                     "default": false
-                }, {
+                },
+            
+                {
                     "type": "text",
                     "id": "announcement_bar_text",
                     "default": "Default announcement",
