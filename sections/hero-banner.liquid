@@ -3,80 +3,80 @@
 
 
 
-{% for block in section.blocks %}
+
     <div class="hero">
         <div class="swiper-hero">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="hero__content hero__content">
-                        <div class="container hero__content-container">
-                            <div class="hero__content-text">
-                                <h2 class="hero-title">{{block.settings.hero_title}}</h2>
-                                <h5 class="hero-descr">
-                                    {{block.settings.hero_descr}}
-                                </h5>
-                                <a class="hero__btn" href="{{block.settings.link_btn}}">link</a>
+                {% for block in section.blocks %}
+                    <div class="swiper-slide">
+                        <div class="hero__content hero__content--{{block.id}}">
+                            <div class="container hero__content-container hero__content-container--{{block.id}}">
+                                <div class="hero__content-text hero__content-text--{{block.id}}">
+                                    <h2 class="hero-title hero-title--{{block.id}}">{{block.settings.hero_title}}</h2>
+                                    <h5 class="hero-descr hero---{{block.id}}">
+                                        {{block.settings.hero_descr}}
+                                    </h5>
+                                    <a class="hero__btn hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                    {% style %}
+                        .hero__content--{{block.id}} {
+                            background-image: url("{{block.settings.image_1 | img_url:"master"}}");
+                        }
+                    
+                    
+                    
+                        .hero__content-container--{{block.id}} {
+                            display: flex;
+                            justify-content: {{block.settings.text_position}};
+                        }
+                    
+                        .hero-title--{{block.id}} {
+                            color: {{block.settings.color_title}};
+                        }
+                    
+                    
+                        .hero-descr--{{block.id}} {
+                            color: {{block.settings.color_descr}};
+                        }
+                    
+                    
+                        .hero__btn--{{block.id}} {
+                            background-color: {{block.settings.color_btn}};
+                            border-radius: {{block.settings.btn_radius}}%;
+                            color: {{block.settings.color_descr}};
+                            border-color:{{block.settings.btn_border_color}};
+                            border-width:{{block.settings.btn_border_width}}px;
+                        }
+                    {% endstyle %}
+                {% endfor %}
             </div>
         </div>
     </div>
 
 
-    {% style %}
-
-    .hero__content {
-        background-image: url("{{block.settings.image_1 | img_url:"master"}}");
-    }
-
-    .hero__content-container {
-        display: flex;
-        justify-content: {{block.settings.text_position}};
-    }
-
-    .hero-title {
-        color: {{block.settings.color_title}};
-    }
-
-
-    .hero-descr {
-        color: {{block.settings.color_descr}};
-    }
-
-
-    .hero__btn {
-        background-color: {{block.settings.color_btn}};
-        border-radius: {{block.settings.btn_radius}}%;
-        color: {{block.settings.color_descr}};
-        border-color:{{block.settings.btn_border_color}};
-        border-width:{{block.settings.btn_border_width}}px;
-    }
     
 
-
-
-    {% endstyle %}
-{% endfor %}
-
+   
 {% schema %}
 
 
 {
- "name": "Hero Banner",
- "max_blocks": 2,
+ "name": "Carousel",
+ "max_blocks": 3,
  "blocks": [
     {
-        "name": "Hero Banner",
         "type": "hero",
+        "name": "Slide",
         "settings": [
             {
             "type": "image_picker",
             "id": "image_1",
-            "label": "Image"        
+            "label": "Image One"        
                 },
-
             {
              "type": "select",
              "id": "text_position",
