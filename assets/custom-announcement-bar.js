@@ -1,12 +1,10 @@
 let btn = document.querySelector(".btn-x");
 let block = document.querySelector(".custom-bar");
 
-
 function checkBar() {
   const clicked = localStorage.getItem("hide-bar");
-  if (clicked) {
-    block.style.display = "none";
-  } else {
+  if (!clicked) {
+    block.style.display = "flex";
     btn.addEventListener("click", saveBar);
   }
 }

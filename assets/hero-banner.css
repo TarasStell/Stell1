@@ -9,37 +9,29 @@
 
 .hero__content {
   margin: 0 10px;
-  padding-top: 120px;
-  padding-bottom: 300px;
-  height: 400px;
+  padding: 320px 15px 100px 15px;
+  min-height: 400px;
   color: aliceblue;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .hero__btn {
-  background-color: rgb(102, 182, 182);
   padding: 10px 40px;
   text-decoration: none;
-  color: azure;
   display: inline-block;
-  border-radius: 15%;
+  transition-duration: 0.3s;
+  border: 1px solid transparent;
 }
 
-.hero__content--one {
-  background-image: url("https://mirpozitiva.ru/wp-content/uploads/2019/11/1477469601_nature_gora.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
+.hero__btn:hover {
+  opacity: 0.6;
 
-.hero__content--two {
-  background-image: url("https://funart.pro/uploads/posts/2021-03/1617041518_32-p-oboi-krasivie-foto-prirodi-36.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 
 .hero__content-text {
-  max-width: 590px;
+  max-width: 520px;
 }
 
 .hero-title {
@@ -52,9 +44,8 @@
   margin-bottom: 33px;
 }
 
-.hero-descr {
-  margin-bottom: 50px;
 
+.hero-descr {
   font-size: 16px;
   line-height: 160%;
   color: rgb(255, 255, 255);
@@ -62,4 +53,5 @@
 
 .hero__content-container {
   display: flex;
+  
 }

@@ -1,56 +1,179 @@
 <script src="{{ 'swiper-hero.js' | asset_url }}" defer="defer"></script>
 {{ "hero-banner.css" | asset_url | stylesheet_tag }}
 
-<div class="hero">
-    <div class="swiper-hero">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <div class="hero__content hero__content--{{ block.id }}">
-                    <div class="container hero__content-container">
-                        <div class="hero__content-text">
-                            <h2 class="hero-title">Lorem, ipsum.</h2>
-                            <p class="hero-descr">
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum
-                                                                                quo, perferendis aliquid sit itaque voluptatum nulla nesciunt
-                                                                                minus explicabo! Voluptates sint nihil mollitia, officiis eius
-                                                                                molestiae beatae, delectus debitis eum officia corporis
-                                                                                voluptatibus aperiam! Corrupti nostrum esse vitae officiis sed
-                                                                                voluptatibus necessitatibus iusto, sunt obcaecati alias maiores
-                                                                                quia! Sapiente beatae iste voluptates perspiciatis cupiditate
-                                                                                nobis quos tenetur a nostrum voluptas possimus veritatis qui
-                                                                                quasi
-                            </p>
 
-                            <a class="hero__btn" href="#">link</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="hero__content hero__content--two">
-                    <div class="container hero__content-container">
-                        <div class="hero__content-text">
-                            <h2 class="hero-title">Lorem, ipsum.</h2>
-                            <p class="hero-descr">
-                                corporis voluptatibus aperiam! Corrupti nostrum esse vitae
-                                                                                officiis sed voluptatibus necessitatibus iusto, sunt obcaecati
-                                                                                alias maiores quia! Sapiente beatae iste voluptates perspiciatis
-                                                                                cupiditate nobis quos tenetur a nostrum voluptas possimus
-                                                                                veritatis qui quasi debitis, autem asperiores fugit fugiat.
-                                                                                Delectus doloremque fuga id dolores sequi inventore repudiandae
-                                                                                architecto facere. Dignissimos, aspernatur. Atque illo minus
-                                                                                vero laudantium illum? Atque veritatis ducimus fugiat et in
-                                                                                illo. Dolores repudiandae ullam impedit atque rerum rem ducimus
-                                                                                pariatur, error, nobis nam temporibus quam autem ab, aspernatur
-                                                                                aliquid harum voluptate. Quaerat exercitationem tempora officia
-                                                                                possimus consectetur provident placeat nesciunt accusamus!
-                            </p>
 
-                            <a class="hero__btn" href="#">link</a>
+{% for block in section.blocks %}
+    <div class="hero">
+        <div class="swiper-hero">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="hero__content hero__content">
+                        <div class="container hero__content-container">
+                            <div class="hero__content-text">
+                                <h2 class="hero-title">{{block.settings.hero_title}}</h2>
+                                <h5 class="hero-descr">
+                                    {{block.settings.hero_descr}}
+                                </h5>
+                                <a class="hero__btn" href="{{block.settings.link_btn}}">link</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+
+    {% style %}
+
+    .hero__content {
+        background-image: url("{{block.settings.image_1 | img_url:"master"}}");
+    }
+
+    .hero__content-container {
+        display: flex;
+        justify-content: {{block.settings.text_position}};
+    }
+
+    .hero-title {
+        color: {{block.settings.color_title}};
+    }
+
+
+    .hero-descr {
+        color: {{block.settings.color_descr}};
+    }
+
+
+    .hero__btn {
+        background-color: {{block.settings.color_btn}};
+        border-radius: {{block.settings.btn_radius}}%;
+        color: {{block.settings.color_descr}};
+        border-color:{{block.settings.btn_border_color}};
+        border-width:{{block.settings.btn_border_width}}px;
+    }
+    
+
+
+
+    {% endstyle %}
+{% endfor %}
+
+{% schema %}
+
+
+{
+ "name": "Hero Banner",
+ "max_blocks": 2,
+ "blocks": [
+    {
+        "name": "Hero Banner",
+        "type": "hero",
+        "settings": [
+            {
+            "type": "image_picker",
+            "id": "image_1",
+            "label": "Image"        
+                },
+
+            {
+             "type": "select",
+             "id": "text_position",
+             "label": "Text Position",
+             "options": [
+                        {
+                            "value": "flex-start",
+                            "label": "Left"
+                        }, 
+                        
+                        {
+                            "value": "flex-end",
+                            "label": "Right"
+                        }, 
+                        
+                        {
+                            "value": "center",
+                            "label": "Center"
+                        }  
+
+                    ],
+                    "default": "flex-start"
+                },
+                
+            {
+                "type": "text",
+                "id": "hero_title",
+                "label": "Hero Title",
+                "default": "Title"
+                }, 
+            
+            {
+                "type": "color",
+                "id": "color_title",
+                "label": "Font Color",
+                "default": "#eeeeee"
+                },
+            
+            {
+                "type": "textarea",
+                "id": "hero_descr",
+                "label": "Text Description",
+                "default": "Welcome to my shop!"
+                }, 
+                
+            {
+                "type": "color",
+                "id": "color_descr",
+                "label": "Color Description",
+                "default": "#eeeeee"
+                }, 
+
+            {
+                "type": "range",
+                "id": "btn_radius",
+                "label": "Button Radius",
+                "default": 6,
+                "min": 0,
+                "max": 50,
+                "step": 1,
+                "unit": "%"
+                },
+
+                {
+                    "type": "color",
+                    "id": "btn_border_color",
+                    "label": "Color Border",
+                    "default": "transparent"
+                    },
+
+                    {
+                        "type": "range",
+                        "id": "btn_border_width",
+                        "label": "Button Border Width",
+                        "default": 0,
+                        "min": 0,
+                        "max": 5,
+                        "step": 1,
+                        "unit": "px"
+                        },
+                
+            {
+                "type": "color",
+                "id": "color_btn",
+                "label": "Color Button",
+                "default": "#334FB4"
+                },
+
+            {
+                "type": "url",
+                "id": "link_btn",
+                "label": "link Button"
+                }
+
+                ]
+            }
+    ]
+
+}
+{% endschema %}
