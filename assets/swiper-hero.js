@@ -1,7 +1,11 @@
 const portfolioSwiper = new Swiper(".swiper-hero", {
   slidesPerView: 1,
   speed: 550,
-  loop: false,
+  loop: true,
+  navigation: {
+    nextEl: ".hero__next",
+    prevEl: ".hero__prev",
+  },
 
 });
 

@@ -6,20 +6,34 @@
     <div class="swiper-hero">
         <div class="swiper-wrapper">
             {% for block in section.blocks %}
-                <div class="swiper-slide">
-                    <div class="hero__content hero__content--{{block.id}}">
-                        <div class="container hero__content-container hero__content-container--{{block.id}}">
-                            <div class="hero__content-text hero__content-text--{{block.id}}">
-                                <h2 class="hero-title hero-title--{{block.id}}">{{block.settings.hero_title}}</h2>
-                                <h5 class="hero-descr hero---{{block.id}}">
-                                        {{block.settings.hero_descr}}
-                                </h5>
-                                <a class="hero__btn hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</a>
+                {% if block.settings.image_1 != blank %}
+                    <div class="swiper-slide">
+                        <div class="hero__content hero__content--{{block.id}}">
+                            <div class="container hero__content-container hero__content-container--{{block.id}}">
+                                <div class="hero__content-text hero__content-text--{{block.id}}">
+                                    {% if block.settings.hero_title != blank%}
+                                        <h2 class="hero-title hero-title--{{block.id}}">{{block.settings.hero_title}}</h2>
+                                    {% endif %}
+                                    {% if block.settings.hero_descr != blank%}
+                                        <h5 class="hero-descr hero---{{block.id}}">{{block.settings.hero_descr}}</h5>
+                                    {% endif %}
+                                    {% if block.settings.link_btn != blank%}
+                                        <a class="hero__btn hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</a>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                {% endif %}  
             {% endfor %}
+        </div>
+        <div class="container slider-nav">
+            <button class="hero__prev slider-nav__btn">
+                <i class="fa-solid fa-arrow-left-long"></i>
+            </button>
+            <button class="hero__next slider-nav__btn">
+                <i class="fa-solid fa-arrow-right-long"></i>
+            </button>
         </div>
     </div>
 </div>
@@ -27,12 +41,12 @@
 {% for block in section.blocks %}
     {% style %}
         .hero__content--{{block.id}} {
-            background-image: url("{{block.settings.image_1 | img_url:"master"}}");
+            background-image: url('{{block.settings.image_1 | img_url:"1024x"}}'); 
         }
 
         .hero__content-container--{{block.id}} {
             display: flex;
-            justify-content: {{block.settings.text_position}};
+            justify-content: {{block.settings.text_position}};    
         }
 
         .hero-title--{{block.id}} {
@@ -49,6 +63,12 @@
             color: {{block.settings.color_descr}};
             border-color:{{block.settings.btn_border_color}};
             border-width:{{block.settings.btn_border_width}}px;
+        }
+
+        .slider-nav__btn {
+            background-color: {{block.settings.color_btn}};
+            color: {{block.settings.color_descr}};
+            border-color:{{block.settings.btn_border_color}};
         }
         
     {% endstyle %}
@@ -155,7 +175,7 @@
                 "label":"Color Button",
                 "default":"#334FB4"
              },
-             
+
              {
                 "type":"url",
                 "id":"link_btn",

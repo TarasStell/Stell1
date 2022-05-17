@@ -1,17 +1,11 @@
 .container {
   margin: 0 auto;
-  max-width: 1140px;
-}
-
-.hero {
-  background-color: gainsboro;
+  max-width: 1120px;
 }
 
 .hero__content {
-  margin: 0 10px;
   padding: 320px 15px 100px 15px;
   min-height: 400px;
-  color: aliceblue;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -27,7 +21,6 @@
 
 .hero__btn:hover {
   opacity: 0.6;
-
 }
 
 .hero__content-text {
@@ -53,5 +46,32 @@
 
 .hero__content-container {
   display: flex;
-  
+}
+
+
+.slider-nav {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 15px;
+}
+
+
+.slider-nav__btn {
+  cursor: pointer;
+  background-color: blueviolet;
+  border-color: brown;
+  transition-duration: 0.3s;
+}
+
+.slider-nav__btn:hover {
+  opacity: 0.8;
+}
+
+.hero__prev {
+  margin-left: 10px;
+}
+
+
+.hero__next {
+  margin-right: 10px;
 }
