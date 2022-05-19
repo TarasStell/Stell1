@@ -9,61 +9,80 @@
                 {% if block.settings.image_right != blank or block.settings.image_left != blank%}
                     <div class="swiper-slide">
                         {% if block.settings.image_left != blank %}
-                            <div class="swiper-slider__section">
-                                <a class="swiper-slider__link" href="{{block.settings.link_img_left}}">
-                                    <div class="hero__content hero__content--{{block.id}}">
-                                        <div class="container hero__content-container hero__content-container--{{block.id}}">
-                                            <div class="hero__content-text hero__content-text--{{block.id}}">
+                                <div class="swiper-slider__section">
+                                    <a class="swiper-slider__link" href="{{block.settings.link_img_left}}">
+                                        <div class="hero__content hero__content-left--{{block.id}}">
+                                            <div class="container hero__content-container hero__content-container--{{block.id}}">
+                                                {% if block.settings.text-bottom %}
+                                                    <div class="hero__content-text hero__content-text--{{block.id}}">
+                                                        {% if block.settings.hero_title != blank%}
+                                                            <h2 class="hero-title hero-title--{{block.id}}">{{block.settings.hero_title}}</h2>
+                                                        {% endif %}
+                                                        {% if block.settings.hero_descr != blank%}
+                                                            <h5 class="hero-descr hero-descr--{{block.id}}">{{block.settings.hero_descr}}</h5>
+                                                        {% endif %}
+                                                        {% if block.settings.link_btn != blank%}
+                                                            <button class="hero__btn hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</button>
+                                                        {% endif %}
+                                                    </div>
+                                                {% endif %}
+                                            </div> 
+                                        </div>
+                                    </a>
+                                    {% unless block.settings.text-bottom %}
+                                        <div class="container hero__footer"> 
+                                            <div class="hero__footer-text">
                                                 {% if block.settings.hero_title != blank%}
-                                                    <h2 class="hero-title hero-title--{{block.id}}">{{block.settings.hero_title}}</h2>
+                                                    <h2 class="hero__footer-title hero-title--{{block.id}}">{{block.settings.hero_title}}</h2>
                                                 {% endif %}
                                                 {% if block.settings.hero_descr != blank%}
-                                                    <h5 class="hero-descr hero-descr--{{block.id}}">{{block.settings.hero_descr}}</h5>
-                                                {% endif %}
-                                                {% if block.settings.link_btn != blank%}
-                                                    <a class="hero__btn hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</a>
+                                                    <h5 class="hero__footer-descr hero-descr--{{block.id}}">{{block.settings.hero_descr}}</h5>
                                                 {% endif %}
                                             </div>
-                                        </div> 
-                                    </div>
-                                </a>
-                                <div class="container hero__footer"> 
-                                    {% if block.settings.footer_title_left != blank%}
-                                        <h5 class="hero__footer-text hero__footer-text--{{block.id}}">{{block.settings.footer_title_left}}</h5>
-                                    {% endif %}
-                                    {% if block.settings.hero_btn_title != blank%}
-                                        <a class="hero__footer-btn hero__footer-btn--{{block.id}}" href="{{block.settings.link_btn}}" >{{block.settings.hero_btn_title}}</a>
-                                    {% endif %}
+                                            {% if block.settings.link_btn != blank%}
+                                                <button class="hero__btn hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</button>
+                                            {% endif %}
+                                        </div>
+                                    {% endunless %}
                                 </div>
-                            </div>
+                           
                         {% endif %}
                         {% if block.settings.image_right != blank %}
                             <div class="swiper-slider__section">
                                 <a class="swiper-slider__link" href="{{block.settings.link_img_right}}">
                                     <div class="hero__content hero__content-right--{{block.id}}">
                                         <div class="container hero__content-container hero__content-container--{{block.id}}">
-                                            <div class="hero__content-text hero__content-text--{{block.id}}">
-                                                {% if block.settings.hero_title != blank%}
-                                                    <h2 class="hero-title hero-title--{{block.id}}">{{block.settings.hero_title}}</h2>
-                                                {% endif %}
-                                                {% if block.settings.hero_descr != blank%}
-                                                    <h5 class="hero-descr hero-descr--{{block.id}}">{{block.settings.hero_descr}}</h5>
-                                                {% endif %}
-                                                {% if block.settings.link_btn != blank%}
-                                                    <a class="hero__btn hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</a>
-                                                {% endif %}
-                                            </div>
+                                            {% if block.settings.text-bottom %}
+                                                <div class="hero__content-text hero__content-text--{{block.id}}">
+                                                    {% if block.settings.hero_title != blank%}
+                                                        <h2 class="hero-title hero-title--{{block.id}}">{{block.settings.hero_title}}</h2>
+                                                    {% endif %}
+                                                    {% if block.settings.hero_descr != blank%}
+                                                        <h5 class="hero-descr hero-descr--{{block.id}}">{{block.settings.hero_descr}}</h5>
+                                                    {% endif %}
+                                                    {% if block.settings.link_btn != blank%}
+                                                        <button class="hero__btn hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</button>
+                                                    {% endif %}
+                                                </div>
+                                            {% endif %}
                                         </div> 
                                     </div>
                                 </a>
-                                <div class="container hero__footer"> 
-                                    {% if block.settings.footer_title_right != blank%}
-                                        <h5 class="hero__footer-text hero__footer-text-right--{{block.id}}">{{block.settings.footer_title_right}}</h5>
-                                    {% endif %}
-                                    {% if block.settings.hero_btn_title != blank%}
-                                        <a class="hero__footer-btn hero__footer-btn-right--{{block.id}}" href="{{block.settings.link_btn}}" >{{block.settings.hero_btn_title}}</a>
-                                    {% endif %}
-                                </div>
+                                {% unless block.settings.text-bottom %}
+                                    <div class="container hero__footer"> 
+                                        <div class="hero__footer-text">
+                                            {% if block.settings.hero_title != blank%}
+                                                <h2 class="hero__footer-title hero-title--{{block.id}}">{{block.settings.hero_title}}</h2>
+                                            {% endif %}
+                                            {% if block.settings.hero_descr != blank%}
+                                                <h5 class="hero__footer-descr hero-descr--{{block.id}}">{{block.settings.hero_descr}}</h5>
+                                            {% endif %}
+                                        </div>
+                                        {% if block.settings.link_btn != blank%}
+                                            <button class="hero__btn hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</button>
+                                        {% endif %}
+                                    </div>
+                                {% endunless %}
                             </div>
                         {% endif %}
                     </div>
@@ -88,7 +107,7 @@
             display: block;
          }
 
-        .hero__content--{{block.id}} {
+        .hero__content-left--{{block.id}} {
             background-image: url('{{block.settings.image_left | img_url:"1024x"}}'); 
         }
 
@@ -163,6 +182,12 @@
                 "type":"url",
                 "id":"link_img_right",
                 "label":"link Image Right"
+             },
+             {
+                "type": "checkbox",
+                "id": "text-bottom",
+                "label": "Text on Image",
+                "default": false
              },
              {
                 "type":"select",
@@ -266,7 +291,7 @@
              {
                 "type":"color",
                 "id":"color_footer_btn",
-                "label":"Color Button",
+                "label":"Color Button Footer",
                 "default":"#334FB4"
              }
           ]
