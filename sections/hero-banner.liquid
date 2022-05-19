@@ -6,23 +6,66 @@
     <div class="swiper-hero">
         <div class="swiper-wrapper">
             {% for block in section.blocks %}
-                {% if block.settings.image_1 != blank %}
+                {% if block.settings.image_right != blank or block.settings.image_left != blank%}
                     <div class="swiper-slide">
-                        <div class="hero__content hero__content--{{block.id}}">
-                            <div class="container hero__content-container hero__content-container--{{block.id}}">
-                                <div class="hero__content-text hero__content-text--{{block.id}}">
-                                    {% if block.settings.hero_title != blank%}
-                                        <h2 class="hero-title hero-title--{{block.id}}">{{block.settings.hero_title}}</h2>
+                        {% if block.settings.image_left != blank %}
+                            <div class="swiper-slider__section">
+                                <a class="swiper-slider__link" href="{{block.settings.link_img_left}}">
+                                    <div class="hero__content hero__content--{{block.id}}">
+                                        <div class="container hero__content-container hero__content-container--{{block.id}}">
+                                            <div class="hero__content-text hero__content-text--{{block.id}}">
+                                                {% if block.settings.hero_title != blank%}
+                                                    <h2 class="hero-title hero-title--{{block.id}}">{{block.settings.hero_title}}</h2>
+                                                {% endif %}
+                                                {% if block.settings.hero_descr != blank%}
+                                                    <h5 class="hero-descr hero-descr--{{block.id}}">{{block.settings.hero_descr}}</h5>
+                                                {% endif %}
+                                                {% if block.settings.link_btn != blank%}
+                                                    <a class="hero__btn hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</a>
+                                                {% endif %}
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </a>
+                                <div class="container hero__footer"> 
+                                    {% if block.settings.footer_title_left != blank%}
+                                        <h5 class="hero__footer-text hero__footer-text--{{block.id}}">{{block.settings.footer_title_left}}</h5>
                                     {% endif %}
-                                    {% if block.settings.hero_descr != blank%}
-                                        <h5 class="hero-descr hero---{{block.id}}">{{block.settings.hero_descr}}</h5>
-                                    {% endif %}
-                                    {% if block.settings.link_btn != blank%}
-                                        <a class="hero__btn hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</a>
+                                    {% if block.settings.hero_btn_title != blank%}
+                                        <a class="hero__footer-btn hero__footer-btn--{{block.id}}" href="{{block.settings.link_btn}}" >{{block.settings.hero_btn_title}}</a>
                                     {% endif %}
                                 </div>
                             </div>
-                        </div>
+                        {% endif %}
+                        {% if block.settings.image_right != blank %}
+                            <div class="swiper-slider__section">
+                                <a class="swiper-slider__link" href="{{block.settings.link_img_right}}">
+                                    <div class="hero__content hero__content-right--{{block.id}}">
+                                        <div class="container hero__content-container hero__content-container--{{block.id}}">
+                                            <div class="hero__content-text hero__content-text--{{block.id}}">
+                                                {% if block.settings.hero_title != blank%}
+                                                    <h2 class="hero-title hero-title--{{block.id}}">{{block.settings.hero_title}}</h2>
+                                                {% endif %}
+                                                {% if block.settings.hero_descr != blank%}
+                                                    <h5 class="hero-descr hero-descr--{{block.id}}">{{block.settings.hero_descr}}</h5>
+                                                {% endif %}
+                                                {% if block.settings.link_btn != blank%}
+                                                    <a class="hero__btn hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</a>
+                                                {% endif %}
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </a>
+                                <div class="container hero__footer"> 
+                                    {% if block.settings.footer_title_right != blank%}
+                                        <h5 class="hero__footer-text hero__footer-text-right--{{block.id}}">{{block.settings.footer_title_right}}</h5>
+                                    {% endif %}
+                                    {% if block.settings.hero_btn_title != blank%}
+                                        <a class="hero__footer-btn hero__footer-btn-right--{{block.id}}" href="{{block.settings.link_btn}}" >{{block.settings.hero_btn_title}}</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endif %}
                     </div>
                 {% endif %}  
             {% endfor %}
@@ -40,8 +83,17 @@
 
 {% for block in section.blocks %}
     {% style %}
+
+         .swiper-slider__link {
+            display: block;
+         }
+
         .hero__content--{{block.id}} {
-            background-image: url('{{block.settings.image_1 | img_url:"1024x"}}'); 
+            background-image: url('{{block.settings.image_left | img_url:"1024x"}}'); 
+        }
+
+        .hero__content-right--{{block.id}} {
+            background-image: url('{{block.settings.image_right | img_url:"1024x"}}'); 
         }
 
         .hero__content-container--{{block.id}} {
@@ -70,6 +122,15 @@
             color: {{block.settings.color_descr}};
             border-color:{{block.settings.btn_border_color}};
         }
+
+        .hero__footer-text--{{block.id}}, .hero__footer-text-right--{{block.id}} {
+            color: {{block.settings.color_title}};
+        }
+
+        .hero__footer-btn--{{block.id}}, .hero__footer-btn-right--{{block.id}} {
+            background-color: {{block.settings.color_footer_btn}};
+            color: {{block.settings.color_descr}};
+        }
         
     {% endstyle %}
 {% endfor %}
@@ -85,10 +146,24 @@
           "settings":[
              {
                 "type":"image_picker",
-                "id":"image_1",
-                "label":"Image One"
+                "id":"image_left",
+                "label":"Image Left"
              },
-
+             {
+                "type":"url",
+                "id":"link_img_left",
+                "label":"link Img Left"
+             },
+             {
+                "type":"image_picker",
+                "id":"image_right",
+                "label":"Image Right"
+             },
+             {
+                "type":"url",
+                "id":"link_img_right",
+                "label":"link Image Right"
+             },
              {
                 "type":"select",
                 "id":"text_position",
@@ -98,12 +173,10 @@
                       "value":"flex-start",
                       "label":"Left"
                    },
-
                    {
                       "value":"flex-end",
                       "label":"Right"
                    },
-
                    {
                       "value":"center",
                       "label":"Center"
@@ -111,35 +184,30 @@
                 ],
                 "default":"flex-start"
              },
-
              {
                 "type":"text",
                 "id":"hero_title",
                 "label":"Hero Title",
                 "default":"Title"
              },
-
              {
                 "type":"color",
                 "id":"color_title",
                 "label":"Font Color",
                 "default":"#eeeeee"
              },
-
              {
                 "type":"textarea",
                 "id":"hero_descr",
                 "label":"Text Description",
                 "default":"Welcome to my shop!"
              },
-
              {
                 "type":"color",
                 "id":"color_descr",
                 "label":"Color Description",
                 "default":"#eeeeee"
              },
-
              {
                 "type":"range",
                 "id":"btn_radius",
@@ -150,14 +218,12 @@
                 "step":1,
                 "unit":"%"
              },
-
              {
                 "type":"color",
                 "id":"btn_border_color",
                 "label":"Color Border",
                 "default":"transparent"
              },
-
              {
                 "type":"range",
                 "id":"btn_border_width",
@@ -168,18 +234,40 @@
                 "step":1,
                 "unit":"px"
              },
-
              {
                 "type":"color",
                 "id":"color_btn",
                 "label":"Color Button",
                 "default":"#334FB4"
              },
-
              {
                 "type":"url",
                 "id":"link_btn",
                 "label":"link Button"
+             },
+             {
+                "type":"text",
+                "id":"footer_title_left",
+                "label":"Footer Title Left",
+                "default":"Title Left"
+             },
+             {
+                "type":"text",
+                "id":"footer_title_right",
+                "label":"Footer Title Right",
+                "default":"Title Right"
+             },
+             {
+                "type":"text",
+                "id":"hero_btn_title",
+                "label":"Footer Btn",
+                "default":"Link"
+             },
+             {
+                "type":"color",
+                "id":"color_footer_btn",
+                "label":"Color Button",
+                "default":"#334FB4"
              }
           ]
        }

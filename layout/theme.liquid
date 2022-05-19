@@ -202,6 +202,10 @@ font-size: 1.6rem;
 
 {% endstyle %}
 
+{{
+    "custom-styles.css" | asset_url | stylesheet_tag
+  }}
+
         {{
       "base.css" | asset_url | stylesheet_tag
     }}

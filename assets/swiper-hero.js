@@ -7,6 +7,8 @@ const portfolioSwiper = new Swiper(".swiper-hero", {
     prevEl: ".hero__prev",
   },
 
+  
+
 });
 
 console.log("sssss")

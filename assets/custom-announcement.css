@@ -1,0 +1,35 @@
+.swiper-announcement {
+    display: none;
+    overflow: hidden;
+}
+
+
+.custom-announcement-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-announcement__icon {
+  background-color: transparent;
+  transition-duration: 0.3s;
+  border-radius: 30%;
+  cursor: pointer;
+  border-color: transparent;
+}
+
+.custom-announcement__icon:hover {
+  opacity: 0.53;
+}
+
+.hidden {
+  display: none;
+}
+
+.custom-announcement-bar__link {
+  text-decoration: none;
+}
+
+.custom-announcement-bar__message {
+  margin: 0;
+}

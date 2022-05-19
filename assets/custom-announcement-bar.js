@@ -1,11 +1,13 @@
-let btn = document.querySelector(".btn-x");
-let block = document.querySelector(".custom-bar");
+let btn = document.querySelectorAll(".btn-x");
+let block = document.querySelector(".swiper-announcement");
 
 function checkBar() {
   const clicked = localStorage.getItem("hide-bar");
   if (!clicked) {
     block.style.display = "flex";
-    btn.addEventListener("click", saveBar);
+    for (let item of btn) {
+      item.addEventListener("click", saveBar);
+    }
   }
 }
 
@@ -15,3 +17,12 @@ function saveBar() {
 }
 
 checkBar();
+
+const announcementSwiper = new Swiper(".swiper-announcement", {
+  slidesPerView: 1,
+  speed: 550,
+  loop: true,
+  autoplay: {
+    delay: 3000,
+  },
+});
