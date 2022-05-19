@@ -21,14 +21,15 @@
                                                         {% if block.settings.hero_descr != blank%}
                                                             <h5 class="hero-descr hero-descr--{{block.id}}">{{block.settings.hero_descr}}</h5>
                                                         {% endif %}
-                                                        {% if block.settings.link_btn != blank%}
-                                                            <button class="hero__btn hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</button>
-                                                        {% endif %}
+                                                        
                                                     </div>
                                                 {% endif %}
                                             </div> 
                                         </div>
                                     </a>
+                                    {% if block.settings.link_btn != blank and block.settings.text-bottom %}
+                                        <a class="hero__btn hero__btn-position hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</a>
+                                    {% endif %}
                                     {% unless block.settings.text-bottom %}
                                         <div class="container hero__footer"> 
                                             <div class="hero__footer-text">
@@ -40,12 +41,11 @@
                                                 {% endif %}
                                             </div>
                                             {% if block.settings.link_btn != blank%}
-                                                <button class="hero__btn hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</button>
+                                                <a class="hero__btn hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</a>
                                             {% endif %}
                                         </div>
                                     {% endunless %}
                                 </div>
-                           
                         {% endif %}
                         {% if block.settings.image_right != blank %}
                             <div class="swiper-slider__section">
@@ -60,14 +60,15 @@
                                                     {% if block.settings.hero_descr != blank%}
                                                         <h5 class="hero-descr hero-descr--{{block.id}}">{{block.settings.hero_descr}}</h5>
                                                     {% endif %}
-                                                    {% if block.settings.link_btn != blank%}
-                                                        <button class="hero__btn hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</button>
-                                                    {% endif %}
+                                                   
                                                 </div>
                                             {% endif %}
                                         </div> 
                                     </div>
                                 </a>
+                                {% if block.settings.link_btn != blank and block.settings.text-bottom%}
+                                <a class="hero__btn hero__btn-position hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</a>
+                                {% endif %}
                                 {% unless block.settings.text-bottom %}
                                     <div class="container hero__footer"> 
                                         <div class="hero__footer-text">
