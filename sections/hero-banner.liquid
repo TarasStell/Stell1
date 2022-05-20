@@ -15,29 +15,30 @@
                                             <div class="container hero__content-container hero__content-container--{{block.id}}">
                                                 {% if block.settings.text-bottom %}
                                                     <div class="hero__content-text hero__content-text--{{block.id}}">
-                                                        {% if block.settings.hero_title != blank%}
-                                                            <h2 class="hero-title hero-title--{{block.id}}">{{block.settings.hero_title}}</h2>
+                                                        {% if block.settings.hero_title_left != blank%}
+                                                            <h2 class="hero-title hero-title--{{block.id}}">{{block.settings.hero_title_left}}</h2>
                                                         {% endif %}
-                                                        {% if block.settings.hero_descr != blank%}
-                                                            <h5 class="hero-descr hero-descr--{{block.id}}">{{block.settings.hero_descr}}</h5>
+                                                        {% if block.settings.hero_descr_left != blank%}
+                                                            <h5 class="hero-descr hero-descr--{{block.id}}">{{block.settings.hero_descr_left}}</h5>
                                                         {% endif %}
-                                                        
                                                     </div>
                                                 {% endif %}
                                             </div> 
                                         </div>
                                     </a>
-                                    {% if block.settings.link_btn != blank and block.settings.text-bottom %}
-                                        <a class="hero__btn hero__btn-position hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</a>
-                                    {% endif %}
+                                    <div class="hero__btn-content">
+                                        {% if block.settings.link_btn != blank and block.settings.text-bottom %}
+                                            <a class="hero__btn hero__btn-position hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</a>
+                                        {% endif %}
+                                    </div>
                                     {% unless block.settings.text-bottom %}
                                         <div class="container hero__footer"> 
                                             <div class="hero__footer-text">
-                                                {% if block.settings.hero_title != blank%}
-                                                    <h2 class="hero__footer-title hero-title--{{block.id}}">{{block.settings.hero_title}}</h2>
+                                                {% if block.settings.hero_title_left != blank%}
+                                                    <h2 class="hero__footer-title hero-title--{{block.id}}">{{block.settings.hero_title_left}}</h2>
                                                 {% endif %}
-                                                {% if block.settings.hero_descr != blank%}
-                                                    <h5 class="hero__footer-descr hero-descr--{{block.id}}">{{block.settings.hero_descr}}</h5>
+                                                {% if block.settings.hero_descr_left != blank%}
+                                                    <h5 class="hero__footer-descr hero-descr--{{block.id}}">{{block.settings.hero_descr_left}}</h5>
                                                 {% endif %}
                                             </div>
                                             {% if block.settings.link_btn != blank%}
@@ -54,11 +55,11 @@
                                         <div class="container hero__content-container hero__content-container--{{block.id}}">
                                             {% if block.settings.text-bottom %}
                                                 <div class="hero__content-text hero__content-text--{{block.id}}">
-                                                    {% if block.settings.hero_title != blank%}
-                                                        <h2 class="hero-title hero-title--{{block.id}}">{{block.settings.hero_title}}</h2>
+                                                    {% if block.settings.hero_title_right != blank%}
+                                                        <h2 class="hero-title hero-title--{{block.id}}">{{block.settings.hero_title_right}}</h2>
                                                     {% endif %}
-                                                    {% if block.settings.hero_descr != blank%}
-                                                        <h5 class="hero-descr hero-descr--{{block.id}}">{{block.settings.hero_descr}}</h5>
+                                                    {% if block.settings.hero_descr_right != blank%}
+                                                        <h5 class="hero-descr hero-descr--{{block.id}}">{{block.settings.hero_descr_right}}</h5>
                                                     {% endif %}
                                                    
                                                 </div>
@@ -66,21 +67,23 @@
                                         </div> 
                                     </div>
                                 </a>
-                                {% if block.settings.link_btn != blank and block.settings.text-bottom%}
-                                <a class="hero__btn hero__btn-position hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</a>
-                                {% endif %}
+                                <div class="hero__btn-content">
+                                    {% if block.settings.link_btn != blank and block.settings.text-bottom%}
+                                    <a class="hero__btn hero__btn-position hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</a>
+                                    {% endif %}
+                                </div>
                                 {% unless block.settings.text-bottom %}
                                     <div class="container hero__footer"> 
                                         <div class="hero__footer-text">
-                                            {% if block.settings.hero_title != blank%}
-                                                <h2 class="hero__footer-title hero-title--{{block.id}}">{{block.settings.hero_title}}</h2>
+                                            {% if block.settings.hero_title_right != blank%}
+                                                <h2 class="hero__footer-title hero-title--{{block.id}}">{{block.settings.hero_title_right}}</h2>
                                             {% endif %}
-                                            {% if block.settings.hero_descr != blank%}
-                                                <h5 class="hero__footer-descr hero-descr--{{block.id}}">{{block.settings.hero_descr}}</h5>
+                                            {% if block.settings.hero_descr_right != blank%}
+                                                <h5 class="hero__footer-descr hero-descr--{{block.id}}">{{block.settings.hero_descr_right}}</h5>
                                             {% endif %}
                                         </div>
                                         {% if block.settings.link_btn != blank%}
-                                            <button class="hero__btn hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</button>
+                                            <a class="hero__btn hero__btn--{{block.id}}" href="{{block.settings.link_btn}}">link</a>
                                         {% endif %}
                                     </div>
                                 {% endunless %}
@@ -103,6 +106,9 @@
 
 {% for block in section.blocks %}
     {% style %}
+
+
+        
 
          .swiper-slider__link {
             display: block;
@@ -212,9 +218,16 @@
              },
              {
                 "type":"text",
-                "id":"hero_title",
-                "label":"Hero Title",
-                "default":"Title"
+                "id":"hero_title_left",
+                "label":"Hero Title Left",
+                "default":"Title Left"
+             },
+
+             {
+                "type":"text",
+                "id":"hero_title_right",
+                "label":"Hero Title Right",
+                "default":"Title Right"
              },
              {
                 "type":"color",
@@ -224,8 +237,14 @@
              },
              {
                 "type":"textarea",
-                "id":"hero_descr",
-                "label":"Text Description",
+                "id":"hero_descr_left",
+                "label":"Text Description Left",
+                "default":"Welcome to my shop!"
+             },
+             {
+                "type":"textarea",
+                "id":"hero_descr_right",
+                "label":"Text Description Right",
                 "default":"Welcome to my shop!"
              },
              {

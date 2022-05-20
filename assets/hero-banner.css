@@ -36,10 +36,11 @@
   margin: 0 10px;
 }
 
+
 .hero__btn-position {
   position: relative;
   right: 0;
-  left: 0;
+  left: 20%;
   bottom: 180px;
   z-index: 10;
 }
@@ -111,7 +112,6 @@
 }
 
 
-
 .hero__footer-text {
   max-width: 690px;
   margin: 0 10px;
@@ -132,11 +132,6 @@
 .swiper-slider__link:hover {
   opacity: 0.8;
 }
-
-/* .swiper-slider__section a {
-  display: block;
-} */
-
 
 @media (max-width: 991px) {
   .hero__footer {
