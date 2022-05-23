@@ -1,5 +1,5 @@
 .swiper-announcement {
-    display: none;
+    display: block;
     overflow: hidden;
 }
 
@@ -32,4 +32,8 @@
 
 .custom-announcement-bar__message {
   margin: 0;
+}
+
+.swiper-wrapper .swiper-wrapper-announcement {
+  display: block;
 }

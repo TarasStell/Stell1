@@ -5,6 +5,7 @@
         <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
         <meta content="width=device-width,initial-scale=1" name="viewport"/>
         <meta content="" name="theme-color"/>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <link rel="canonical" href="{{ canonical_url }}"/>
         <link crossorigin href="https://cdn.shopify.com" rel="preconnect"/>
         <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" referrerpolicy="no-referrer" rel="stylesheet"/>
@@ -237,16 +238,18 @@ font-size: 1.6rem;
 
        
         
-        {% section 'custom-announcement-bar'  %}
+        
+        {% section 'announcement-bar-timer'  %}
         {% comment %}
+        {% section 'custom-announcement-bar'  %}
         {% section 'announcement-bar' %}
         {% section 'announcement-my-bar' %}
-        {{ content_for_layout }}
+    {% section 'hero-banner' %}
         {% endcomment %}
 
         {% section 'header' %}
         <main class="content-for-layout focus-none" id="MainContent" role="main" tabindex="-1">
-            {% section 'hero-banner' %}
+            {{ content_for_layout }}
         </main>
 
         {% section 'footer' %}

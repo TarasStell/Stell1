@@ -2,15 +2,54 @@
 {{ "custom-announcement.css" | asset_url | stylesheet_tag }}
 
 
+{% assign event_date = '2022-05-28' | date: "%d" %}
+{% assign event_hours = '18:00:00' | date: "%H" %}
+{% assign event_mins = '2022-05-28T23:59:59' | date: "%M" %}
+{% assign event_secs = '2022-05-28T23:59:59' | date: "%S" %}
+
+{% assign today_day = 'now' | date: "%d" %}
+{% assign today_hour = 'now' | date: "%H" %}
+{% assign today_min = 'now' | date: "%M" %}
+{% assign today_sec = 'now' | date: "%S" %}
+
+{% assign difference = %}
+{% assign difference_days = event_date | minus: today_day  %}
+{% assign difference_hours = event_hours | minus: today_hour %}
+{% assign difference_mins = event_mins | minus: today_min %}
+{% assign difference_secs = event_secs | minus: today_sec %}
+
+{% capture difference %}
+   <span class="word-one">Days: {{difference_days}} Time: {{difference_hours}}:{{difference_mins}}:{{difference_secs}}</span>.
+{% endcapture %}
+
+
+{% assign difference_hour = difference | divided_by: 3600 %}
+
+
+
+{% if difference_hours %}
+{{asdasdasd}}
+  
+{% endif %}
+
+
+
+
+
+
+
 
 <div class="swiper-announcement">
-    <div class="swiper-wrapper">
+    <div class="swiper-wrapper swiper-wrapper-announcement">
         {% for block in section.blocks %}
             {% if block.settings.enable_checkbox %}
                 <div class="swiper-slide">
                     <div class="custom-announcement-bar custom-announcement-bar--{{block.id}} custom-bar">
                         <a class="custom-announcement-bar__link custom-announcement-bar__link--{{block.id}}" href="{{ block.settings.link }}">
-                            <p class="custom-announcement-bar__message custom-announcement-bar__message--{{block.id}}">{{ block.settings.announcement_bar_text }}</p>
+                            <p class="custom-announcement-bar__message custom-announcement-bar__message--{{block.id}}">
+                               <span class="word-one--{{block.id}}">{{ block.settings.announcement_bar_text }}  Days: {{difference_days}} Time: {{difference_hours}}:{{difference_mins}}:{{difference_secs}}</span>
+                               <div class="announcement-bar_time"></div>
+                           </p>
                         </a>
                         <button class="fa-solid fa-xmark custom-announcement__icon custom-announcement__icon--{{block.id}} btn-x"></button>
                     </div>
@@ -20,12 +59,43 @@
     </div>
 </div>
 
+<script>
+
+   
+
+   function clockDate() {
+      let time= document.querySelector(".announcement-bar_time")
+      time.innerHTML = new Date() 
+      
+   
+      console.log(time)
+      setTimeout("clockDate()", 3000); 
+
+   
+   }
+
+   clockDate()
+ 
+   
+
+</script>
 
 
 
 
 {% for block in section.blocks %}
     {% style %}
+         .word-one--{{block.id}} {
+            color:{{block.settings.font_color_one}};
+         }
+
+         .word-two--{{block.id}} {
+            color:{{block.settings.font_color_two}};
+         }
+         
+         .word-three--{{block.id}} {
+            color:{{block.settings.font_color_three}};
+         }
 
          .custom-announcement-bar--{{block.id}} {
             background-color: {{block.settings.bg-color}};   
@@ -48,7 +118,7 @@
             font-size: {{block.settings.font-size}}px;
             padding: {{block.settings.height}}px 0;
            
-            color: {{block.settings.font-color}}
+            color: {{block.settings.text_word_color}}
         };
         {% endstyle %}
 {% endfor %}
@@ -70,11 +140,86 @@
                 "default": false
              },
              {
+               "type": "text",
+               "id": "date_picker",
+               "label": "Choose date",
+               "default": "12-24-2022",
+               "info": "e.g. mm-dd-yyyy"
+           },
+             {
                 "type": "text",
                 "id": "announcement_bar_text",
                 "default": "Default announcement",
                 "label": "Announcement Text"
              },
+             {
+               "type": "header",
+               "content": "Start event date"
+             },
+             {
+               "type": "range",
+               "id": "start_year",
+               "label": "Year",
+                 "min": 2022,
+                 "max": 2025,
+                 "step": 1,
+               "default": 2022
+             },
+             {
+               "type": "range",
+               "id": "start_month",
+               "label": "Month",
+                 "min": 1,
+                 "max": 12,
+                 "step": 1,
+               "default": 11
+             },
+             {
+               "type": "range",
+               "id": "start_day",
+               "label": "Day",
+                 "min": 1,
+                 "max": 31,
+                 "step": 1,
+               "default": 27
+             },
+             {
+               "type": "range",
+               "id": "start_hours",
+               "label": "Hours",
+                 "min": 0,
+                 "max": 23,
+                 "step": 1,
+               "default": 16
+             },
+             {
+               "type": "range",
+               "id": "start_minute",
+               "label": "Minute",
+                 "min": 0,
+                 "max": 60,
+                 "step": 1,
+               "default": 0
+             },
+             {
+               "type": "color",
+               "id": "font_color_one",
+               "label": "Font Color One",
+               "default": "#3E0909"
+            },
+            {
+               "type": "color",
+               "id": "font_color_two",
+               "label": "Font Color Two",
+               "default": "#E92929"
+            },
+            {
+               "type": "color",
+               "id": "font_color_three",
+               "label": "Font Color Three",
+               "default": "#334FB4"
+            },
+          
              {
                 "type": "select",
                 "id": "text-transform",
